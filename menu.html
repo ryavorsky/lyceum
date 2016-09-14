@@ -1,19 +1,19 @@
 <html>
 <script type="text/javascript">
 
-function show_text(){
+function show_pic(){
 //alert('hi');
 var c1_elem = document.getElementById("c1");
 var c2_elem = document.getElementById("c2");
-c1_elem.style.visibility='hidden';
-c2_elem.style.visibility='visible';
+c1_elem.style.display='none';
+c2_elem.style.display='block';
 }
 
-function show_pic(){
+function show_text(){
 var c1_elem = document.getElementById("c1");
 var c2_elem = document.getElementById("c2");
-c1_elem.style.visibility='visible';
-c2_elem.style.visibility='hidden';
+c1_elem.style.display='block';
+c2_elem.style.display='none';
 }
 
 </script>
@@ -31,7 +31,7 @@ c2_elem.style.visibility='hidden';
 <tr>
   <td colspan="2">
 
-  <div id="c1">
+  <div id="c1" style="display:none">
   When I find myself in times of trouble <br/>
 Mother Mary comes to me <br/>
 Speaking words of wisdom, let it be. <br/>
