@@ -1,0 +1,42 @@
+<html>
+<script type="text/javascript">
+
+function show_text(){
+//alert('hi');
+var c1_elem = document.getElementById("c1");
+var c2_elem = document.getElementById("c2");
+c1_elem.style.visibility='hidden';
+c2_elem.style.visibility='visible';
+}
+
+function show_pic(){
+var c1_elem = document.getElementById("c1");
+var c2_elem = document.getElementById("c2");
+c1_elem.style.visibility='visible';
+c2_elem.style.visibility='hidden';
+}
+
+</script>
+<body>
+
+<h1>Menu</h1>
+
+<table border="1">
+
+<tr>
+  <td id="m1" onclick="show_text()">Text</td>
+  <td id="m2" onclick="show_pic()">Picture</td>
+</tr>
+
+<tr>
+  <td colspan="2">
+
+  <div id="c1">Let it be</div>
+  <div id="c2"><img src="cat.jpg"/></div>
+
+  </td>
+</tr>
+
+</table>
+</body>
+</html>
