@@ -1,0 +1,18 @@
+﻿<html>
+<head>
+</head>
+<script>
+function f(){
+  dict = {"ю":"yu", "е":"e", "я":"ia"};
+  q1e= document.getElementById('q1');
+  q1a = q1e.value;
+  res = dict[q1a];
+  alert(res);
+}
+</script>
+<body>
+<input type=text id="q1">
+<input type=button onclick="f()" value="Push me">
+
+</body>
+</html>
