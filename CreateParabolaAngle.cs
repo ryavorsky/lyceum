@@ -1,48 +1,47 @@
-﻿using System;
-using System.IO;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System;
 
+public class CreateSvgFile {
+	public static int Main() {
+		var width = 500U;
+		var height = 400U;
 
-class CreateSvgFile
-{
-    public static void Main()
-    {
+		var pathDescriptions = "";
+		for(var idx = 0L; idx <= 200; idx += 1) {
+			var x = (double)(idx - 100) / 50;
+			var y = x * x;
+			var angle = 1.8d;
 
-        string path = @"c:\temp\parabola1.html";
-        string header = "<html>\n<head></head>\n<body>\n<h1>Parabola + angle</h1>\n";
-        string footer = "</body>\n</html>";
+			var x1 = x * Math.Cos(angle) + y * Math.Sin(angle);
+			var y1 = y * Math.Cos(angle) - x * Math.Sin(angle);
 
-        string svg = "";
-        svg += "<svg width='500' height='400'>\n";
-        svg += "<rect  width='500' height='400' style='fill:rgb(0,0,255);' />\n";
-        string parabola = "<path stroke='yellow' stroke-width='5' fill='none' d='";
-        for (int i = 0; i <= 200; i++)
-        {
-            double x = ((double)i - 100) / 50;
-            double y = x * x;
-            double angle = 1.8;
-            double x1 = x * Math.Cos(angle) + y * Math.Sin(angle);
-            double y1 = -x * Math.Sin(angle) + y * Math.Cos(angle);
+			var argX = (x1 * 50 + 150).ToString("0");
+			var argY = (200 - y1 * 50).ToString("0");
 
-            String xs = (x1*50 + 150).ToString("0");
-            String ys = (- y1*50 + 200).ToString("0");
-            if (i == 0)
-            {
-                parabola += " M " + xs + " " + ys;
-            }
-            else {
-                parabola += " L " + xs + " " + ys;
-            }
-        };
-        parabola += " ' />\n";
-        svg += parabola;
-        svg += "</svg>\n";
+			var instruction = (idx == 0) ? "M" : "L";
+			var command = String.Format("{0} {1} {2} ",
+				instruction, argX, argY);
 
-        string res = header + svg + footer;
-        File.WriteAllText(path, res);
-        Console.WriteLine("Ok");
-    }
+			pathDescriptions = String.Concat(pathDescriptions, command);
+		}
+
+		var svgContent = "<rect width=\"{0}\" height=\"{1}\" style=\"fill:rgb(0,0,255)\"/>";
+		var pathElement = String.Format(
+			"<path stroke=\"black\" stroke-width=\"4\" fill=\"none\" d=\"{0}\"/>",
+			pathDescriptions);
+
+		svgContent = String.Concat(svgContent, pathElement);
+
+		var svgElement = String.Format("<svg width=\"{0}\" height=\"{1}\">{2}</svg>",
+			width, height, svgContent);
+
+		var bodyContent = String.Format("<h1>Parabola + angle</h1>{0}", svgElement);
+
+		var htm = String.Format(
+			"<!DOCTYPE html><title>Generated SVG</title><body>{0}</body>",
+			bodyContent);
+
+		Console.WriteLine(htm);
+
+		return 0;
+	}
 }
