@@ -1,9 +1,9 @@
 using System;
 
-class SVGGenerator {
+class GenerateSVG {
 	public static int Main() {
-		var svgHeight = 400UL;
-		var svgWidth  = 500UL;
+		var height = 400UL;
+		var width  = 500UL;
 
 		var svgContent = "<circle cx=\"50\" cy=\"50\" r=\"40\" stroke=\"green\" stroke-width=\"4\" fill=\"yellow\"/>";
 
@@ -20,7 +20,7 @@ class SVGGenerator {
 		}
 
 		var svgElement = String.Format("<svg width=\"{0}\" height=\"{1}\">{2}</svg>",
-			svgWidth, svgHeight, svgContent);
+			width, height, svgContent);
 
 		var bodyContent = String.Format("<h1>My first SVG</h1>{0}", svgElement);
 

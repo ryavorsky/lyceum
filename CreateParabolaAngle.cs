@@ -37,7 +37,7 @@ public class CreateSvgFile {
 		var bodyContent = String.Format("<h1>Parabola + angle</h1>{0}", svgElement);
 
 		var htm = String.Format(
-			"<!DOCTYPE html><title>Generated SVG</title><body>{0}</body>",
+			"<!DOCTYPE html><meta charset=\"utf-8\"><title>Generated SVG</title><body>{0}</body>",
 			bodyContent);
 
 		Console.WriteLine(htm);

@@ -18,7 +18,10 @@ public class GenerateSVG {
 			pathDescriptions = String.Concat(pathDescriptions, command);
 		}
 
-		var svgContent = "<rect width=\"{0}\" height=\"{1}\" style=\"fill:rgb(0,0,255)\"/>";
+		var svgContent = String.Format(
+			"<rect width=\"{0}\" height=\"{1}\" style=\"fill:rgb(0,0,255)\"/>",
+			width, height);
+
 		var pathElement = String.Format(
 			"<path stroke=\"black\" stroke-width=\"2\" fill=\"none\" d=\"{0}\"/>",
 			pathDescriptions);
@@ -31,7 +34,7 @@ public class GenerateSVG {
 		var bodyContent = String.Format("<h1>Parabola</h1>{0}", svgElement);
 
 		var htm = String.Format(
-			"<!DOCTYPE html><title>Generated SVG</title><body>{0}</body>",
+			"<!DOCTYPE html><meta charset=\"utf-8\"><title>Generated SVG</title><body>{0}</body>",
 			bodyContent);
 
 		Console.WriteLine(htm);
