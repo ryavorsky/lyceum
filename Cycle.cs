@@ -1,20 +1,20 @@
 using System;
 
-public class CreateSvgFile {
+public class GenerateSVG {
 	public static int Main() {
 		var width = 500U;
 		var height = 400U;
 
 		var pathDescriptions = "";
-		for(var i = 0U; i <= 500; i += 1) {
-			var t = (double)i / 30d;
+		for(var idx = 0UL; i <= 500; i += 1) {
+			var t = (double)idx / 30d;
 			var r = 2d;
 
 			var x = r * Math.Sin(3 * t);
 			var y = r * Math.Cos(5 * t); ;
 
-			var argX = (x * 50 + 150).ToString("0");
-			var argY = (-y * 50 + 200).ToString("0");
+			var argX = (150 + x * 50).ToString("0");
+			var argY = (200 - y * 50).ToString("0");
 
 			var instruction = (i == 0) ? "M" : "L";
 			var command = String.Format(" {0} {1} {2} ",
@@ -23,12 +23,14 @@ public class CreateSvgFile {
 			pathDescriptions = String.Concat(pathDescriptions, command);
 		}
 
-		var svgContent = "<rect width=\"500\" height=\"400\" style=\"fill:rgb(0,0,255)\"/>";
-		var pathElement = String.Format("<path stroke=\"yellow\" stroke-width=\"5\" fill=\"none\" d=\"{0}\"/>", pathDescriptions);
+		var svgContent = "<rect width=\"{0}\" height=\"{1}\" style=\"fill:rgb(0,0,255)\"/>";
+		var pathElement = String.Format(
+			"<path stroke=\"yellow\" stroke-width=\"5\" fill=\"none\" d=\"{0}\"/>",
+			pathDescriptions);
 
 		svgContent = String.Concat(svgContent, pathElement);
 
-		var svgElement = String.Format("<svg width=\"500\" height=\"400\">{2}</svg>",
+		var svgElement = String.Format("<svg width=\"{0}\" height=\"{1}\">{2}</svg>",
 			width, height, svgContent);
 
 		var bodyContent = String.Format("<h1>Cycle</h1>{0}", svgElement);

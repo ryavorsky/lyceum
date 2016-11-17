@@ -1,39 +1,41 @@
-﻿using System;
-using System.IO;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System;
 
+public class GenerateSVG {
+	public static int Main() {
+		var width = 500U;
+		var height = 400U;
 
-class CreateSvgFile
-{
-    public static void Main()
-    {
+		var pathDescriptions = "M50 0";
+		for(var i = 0L; i <= 200; i += 1) {
+			var x = (double)(i  - 100) / 50d;
+			var y = x * x;
 
-        string path = @"c:\temp\parabola.html";
-        string header = "<html>\n<head></head>\n<body>\n<h1>Parabola</h1>\n";
-        string footer = "</body>\n</html>";
+			var argX = (150 + x * 50).ToString("0");
+			var argY = (200 - y * 50).ToString("0");
 
-        string svg = "";
-        svg += "<svg width='500' height='400'>\n";
-        svg += "<rect  width='500' height='400' style='fill:rgb(0,0,255);' />\n";
-        string parabola = "<path stroke='yellow' stroke-width='5' fill='none' d='M50 0 ";
-        for (int i = 0; i <= 200; i++)
-        {
-            float x = ( (float) i  - 100) / 50;
-            float y = x * x;
+			var command = String.Format(" L {0} {1} ", argX, argY);
 
-            String xs = (x*50 + 150).ToString("0");
-            String ys = (- y*50 + 200).ToString("0");
-            parabola += " L " + xs + " " + ys;
-        };
-        parabola += " ' />\n";
-        svg += parabola;
-        svg += "</svg>\n";
+			pathDescriptions = String.Concat(pathDescriptions, command);
+		}
 
-        string res = header + svg + footer;
-        File.WriteAllText(path, res);
-        Console.WriteLine("Ok");
-    }
+		var svgContent = "<rect width=\"{0}\" height=\"{1}\" style=\"fill:rgb(0,0,255)\"/>";
+		var pathElement = String.Format(
+			"<path stroke=\"black\" stroke-width=\"2\" fill=\"none\" d=\"{0}\"/>",
+			pathDescriptions);
+
+		svgContent = String.Concat(svgContent, pathElement);
+
+		var svgElement = String.Format("<svg width=\"{0}\" height=\"{1}\">{2}</svg>",
+			width, height, svgContent);
+
+		var bodyContent = String.Format("<h1>Parabola</h1>{0}", svgElement);
+
+		var htm = String.Format(
+			"<!DOCTYPE html><title>Generated SVG</title><body>{0}</body>",
+			bodyContent);
+
+		Console.WriteLine(htm);
+
+		return 0;
+	}
 }

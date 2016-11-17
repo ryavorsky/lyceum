@@ -7,7 +7,7 @@ class SVGGenerator {
 
 		var svgContent = "<circle cx=\"50\" cy=\"50\" r=\"40\" stroke=\"green\" stroke-width=\"4\" fill=\"yellow\"/>";
 
-		for(var idx = 0U; idx < 5; idx += 1) {
+		for(var idx = 0UL; idx < 5; idx += 1) {
 			var centerX = idx * 50 + 50;
 			var centerY = idx * 30 + 145;
 			var radius = idx * idx * 3 + 25;
