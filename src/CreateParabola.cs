@@ -23,7 +23,7 @@ public class GenerateSVG {
 			width, height);
 
 		var pathElement = String.Format(
-			"<path stroke=\"black\" stroke-width=\"2\" fill=\"none\" d=\"{0}\"/>",
+			"<path stroke=\"yellow\" stroke-width=\"2\" fill=\"none\" d=\"{0}\"/>",
 			pathDescriptions);
 
 		svgContent = String.Concat(svgContent, pathElement);

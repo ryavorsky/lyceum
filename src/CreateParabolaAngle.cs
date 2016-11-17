@@ -24,9 +24,11 @@ public class CreateSvgFile {
 			pathDescriptions = String.Concat(pathDescriptions, command);
 		}
 
-		var svgContent = "<rect width=\"{0}\" height=\"{1}\" style=\"fill:rgb(0,0,255)\"/>";
+		var svgContent = String.Format(
+			"<rect width=\"{0}\" height=\"{1}\" style=\"fill:rgb(0,0,255)\"/>",
+			width, height);
 		var pathElement = String.Format(
-			"<path stroke=\"black\" stroke-width=\"4\" fill=\"none\" d=\"{0}\"/>",
+			"<path stroke=\"yellow\" stroke-width=\"4\" fill=\"none\" d=\"{0}\"/>",
 			pathDescriptions);
 
 		svgContent = String.Concat(svgContent, pathElement);
