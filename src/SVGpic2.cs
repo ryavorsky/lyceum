@@ -11,7 +11,7 @@ public class GenerateSVG {
 			var red = j * 10;
 			var green = i * 5;
 			var color = String.Format(
-				"rgba({0}, {1}, 90, 0.5)",
+				"rgba({0},{1},90,0.5)",
 				red, green);
 
 			var centerX = 5 + i * 20;
@@ -21,7 +21,7 @@ public class GenerateSVG {
 			var strokeWidth = 1;
 
 			var circleElement = String.Format(
-				"<circle cx=\"{0}\" cy=\"{1}\" r=\"{2}\" stroke=\"green\" stroke-width=\"{3}\" fill=\"{4}\"/>",
+				"<circle cx=\"{0}\" cy=\"{1}\" r=\"{2:0}\" stroke=\"green\" stroke-width=\"{3}\" fill=\"{4}\"/>",
 				centerX, centerY, radius, strokeWidth, color);
 
 			svgContent = String.Concat(svgContent, circleElement);
@@ -34,10 +34,13 @@ public class GenerateSVG {
 			svgContent = String.Concat(svgContent, pathElement);
 		}
 
-		var svgElement = String.Format("<svg width=\"{0}\" height=\"{1}\">{2}</svg>",
+		var svgElement = String.Format(
+			"<svg width=\"{0}\" height=\"{1}\">{2}</svg>",
 			width, height, svgContent);
 
-		var bodyContent = String.Format("<h1>My first SVG</h1>{0}", svgElement);
+		var bodyContent = String.Format(
+			"<h1>My first SVG</h1>{0}",
+			svgElement);
 
 		var htm = String.Format(
 			"<!DOCTYPE html><meta charset=\"utf-8\"><title>Generated SVG</title><body>{0}</body>",

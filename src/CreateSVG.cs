@@ -19,10 +19,13 @@ class GenerateSVG {
 			svgContent = String.Concat(svgContent, circle);
 		}
 
-		var svgElement = String.Format("<svg width=\"{0}\" height=\"{1}\">{2}</svg>",
+		var svgElement = String.Format(
+			"<svg width=\"{0}\" height=\"{1}\">{2}</svg>",
 			width, height, svgContent);
 
-		var bodyContent = String.Format("<h1>My first SVG</h1>{0}", svgElement);
+		var bodyContent = String.Format(
+			"<h1>My first SVG</h1>{0}",
+			svgElement);
 
 		var htm = String.Format(
 			"<!DOCTYPE html><meta charset=\"utf-8\"><title>Generated SVG</title><body>{0}</body>",
