@@ -7,7 +7,7 @@ public class GenerateSVG {
 
 		var svgContent = "<circle cx=\"50\" cy=\"50\" r=\"40\" stroke=\"green\" stroke-width=\"4\" fill=\"yellow\"/>";
 
-		for(var j = 0L; j < 20; j++) for(var i = 0L; i < 55; i++) {
+		for(var j = 0L; j < 20; j += 1) for(var i = 0L; i < 55; i += 1) {
 			var centerX = i * 20 + 5;
 			var centerY = j * 20 + 5;
 			var radius = 20 + 15 * Math.Sin(i / 7);
@@ -26,7 +26,7 @@ public class GenerateSVG {
 			svgContent = String.Concat(svgContent, circleElement);
 		}
 
-		for(var i = 0UL; i < 30; i++) {
+		for(var i = 0UL; i < 30; i += 1) {
 			var pathElement = String.Format("<path d=\"M{0} 0 l -35 50 l 70 0 Z\" fill=\"red\"/>", i * 50);
 			svgContent = String.Concat(svgContent, pathElement);
 		}

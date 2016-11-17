@@ -1,53 +1,51 @@
-﻿using System;
-using System.IO;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System;
 
+public class GenerateSVG {
+	public static int Main() {
+		var height = 400UL;
+		var width  = 500UL;
 
-class CreateSvgFile
-{
-    public static void Main()
-    {
+		var svgContent = "<circle cx=\"50\" cy=\"50\" r=\"40\" stroke=\"brown\" stroke-width=\"2\" fill=\"yellow\"/>";
 
-        string path = @"c:\temp\svgpic1.html";
+		for(var j = 0; j < 20; j += 1) for(var i = 0; i < 50; i += 1) {
+			var red = j * 10;
+			var green = i * 5;
+			var color = String.Format(
+				"rgba({0}, {1}, 90, 0.5)",
+				red, green);
 
-        string header = "<html>\n<head></head>\n<body>\n<h1>My first SVG</h1>\n";
-        string footer = "</body>\n</html>";
+			var centerX = 5 + i * 20;
+			var centerY = 5 + j * 20;
+			var radius = 7 + 4 * Math.Sin((i * i + j * j) / 2);
 
-        string svg = "";
-        svg += "<svg width='500' height='400'>";
-        svg += "<circle cx='50' cy='50' r='40' stroke='brown' stroke-width='2' fill='yellow' />\n";
+			var strokeWidth = 1;
 
-        for (int j = 0; j < 20; j++)
-        {
-            for (int i = 0; i < 50; i++)
-            {
-                int x = 5 + i * 20;
-                int y = 5 + j * 20;
-                String gr = (i*5).ToString();
-                String red = (j * 10).ToString();
-                String color = "rgba(" + red + ", "+ gr +", 90, 0.5)";
-                String xs = (x).ToString();
-                String ys = (y).ToString();
-                String rs = (7 + 4*Math.Sin((i*i+j*j)/2)).ToString("0");
-                String ws = (1).ToString();
-                svg += "<circle cx='" + xs + "' cy='" + ys + "' r='" + rs + "' stroke='green' stroke-width='" 
-                    + ws + "' fill='" + color +
-                    "' />\n";
-            };
-        };
-        for (int a = 0; a < 10; a++)
-        {
+			var circleElement = String.Format(
+				"<circle cx=\"{0}\" cy=\"{1}\" r=\"{2}\" stroke=\"green\" stroke-width=\"{3}\" fill=\"{4}\"/>",
+				centerX, centerY, radius, strokeWidth, color);
 
-            svg += "<path d='M " + (a*100).ToString() + " " + (a*15).ToString() + " l-75 150 l 150 0 Z' fill='rgba(43,13,130,0.3)' />";
-        };
-        svg += "</svg>";
+			svgContent = String.Concat(svgContent, circleElement);
+		}
 
-        string res = header + svg + footer;
-        File.WriteAllText(path, res);
-        
-    }
+		for(var a = 0; a < 10; a += 1) {
+			var pathElement = String.Format(
+				"<path d=\"M {0} {1} l-75 150 l 150 0 Z\" fill=\"rgba(43,13,130,0.3)\"/>",
+				a * 100, a * 15);
+			svgContent = String.Concat(svgContent, pathElement);
+		}
+
+		var svgElement = String.Format("<svg width=\"{0}\" height=\"{1}\">{2}</svg>",
+			width, height, svgContent);
+
+		var bodyContent = String.Format("<h1>My first SVG</h1>{0}", svgElement);
+
+		var htm = String.Format(
+			"<!DOCTYPE html><meta charset=\"utf-8\"><title>Generated SVG</title><body>{0}</body>",
+			bodyContent);
+
+		Console.WriteLine(htm);
+
+		return 0;
+	}
 }
 
