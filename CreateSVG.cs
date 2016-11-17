@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 class SVGGenerator {
 	public static int Main() {
