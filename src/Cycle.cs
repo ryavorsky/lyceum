@@ -6,7 +6,7 @@ public class GenerateSVG {
 		var height = 400U;
 
 		var pathDescriptions = "";
-		for(var idx = 0UL; i <= 500; i += 1) {
+		for(var idx = 0UL; idx <= 500; idx += 1) {
 			var t = (double)idx / 30d;
 			var r = 2d;
 
@@ -16,7 +16,7 @@ public class GenerateSVG {
 			var argX = (150 + x * 50).ToString("0");
 			var argY = (200 - y * 50).ToString("0");
 
-			var instruction = (i == 0) ? "M" : "L";
+			var instruction = (idx == 0) ? "M" : "L";
 			var command = String.Format(" {0} {1} {2} ",
 				instruction, argX, argY);
 
