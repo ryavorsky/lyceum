@@ -1,36 +1,35 @@
 ﻿using System;
-using System.IO;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
+class SVGGenerator {
+	public static int Main() {
+		var svgHeight = 400UL;
+		var svgWidth  = 500UL;
 
-class CreateSvgFile
-{
-    public static void Main()
-    {
+		var svgContent = "<circle cx=\"50\" cy=\"50\" r=\"40\" stroke=\"green\" stroke-width=\"4\" fill=\"yellow\"/>";
 
-        string path = @"c:\temp\picture.html";
-        string header = "<html>\n<head></head>\n<body>\n<h1>My first SVG</h1>\n";
-        string footer = "</body>\n</html>";
+		for(var idx = 0U; idx < 5; idx += 1) {
+			var centerX = idx * 50 + 50;
+			var centerY = idx * 30 + 145;
+			var radius = idx * idx * 3 + 25;
 
-        string svg = "";
-        svg += "<svg width='500' height='400'>";
-        svg += "<circle cx='50' cy='50' r='40' stroke='green' stroke-width='4' fill='yellow' />\n";
+			var circle = String.Format(
+				"<circle cx=\"{0}\" cy=\"{1}\" r=\"{2}\" stroke=\"green\" stroke-width=\"{3}\" fill=\"blue\"/>",
+				centerX, centerY, radius, idx);
 
-        for (int i = 0; i < 5; i++)
-        {
-            String xs = (i*50 + 50).ToString();
-            String ys = (i*30 + 145).ToString();
-            String rs = (i * i * 3 + 25).ToString();
-            String ws = i.ToString();
-            svg += "<circle cx='" + xs + "' cy='" + ys +"' r='" + rs + "' stroke='green' stroke-width='"+ws+"' fill='blue' />\n";
-        };
-        svg += "</svg>";
+			svgContent = String.Concat(svgContent, circle);
+		}
 
-        string res = header + svg + footer;
-        File.WriteAllText(path, res);
-        Console.WriteLine("Ok");
-    }
+		var svgElement = String.Format("<svg width=\"{0}\" height=\"{1}\">{2}</svg>",
+			svgWidth, svgHeight, svgContent);
+
+		var bodyContent = String.Format("<h1>My first SVG</h1>{0}", svgElement);
+
+		var htm = String.Format(
+			"<!DOCTYPE html><meta charset=\"utf-8\"><title>Generated SVG</title><body>{0}</body>",
+			bodyContent);
+
+		Console.WriteLine(htm);
+
+		return 0;
+	}
 }
