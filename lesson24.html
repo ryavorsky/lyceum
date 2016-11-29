@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<body>
+See <a href="https://css-tricks.com/guide-svg-animations-smil/">this tutorial</a> (or <a href="http://css-live.ru/articles/rukovodstvo-po-svg-animaciyam-smil.html">here in Russian</a>) for more <br/>
+
+<svg height="700" width="1000">
+  <rect  height="700" width="1000" fill="blue" />
+  <circle id="c1" cx="150" cy="50" r="40" stroke="cyan" stroke-width="5" fill="rgb(240,240,255)" />
+  <circle id="c2" cx="150" cy="190" r="100" stroke="yellow" stroke-width="5" fill="rgb(240,240,255)" />
+
+<animate 
+           xlink:href="#c1"
+           attributeName="cx"
+           values="150;450;150"
+           dur="2s"
+           repeatCount="4"
+/>
+<animate 
+           xlink:href="#c2"
+           attributeName="cx"
+           values="150;450;150"
+           dur="2s"
+           repeatCount="2"
+/>
+<animate 
+           xlink:href="#c1"
+           attributeName="fill"
+           values="rgb(0,0,255);rgb(0,255,0);rgb(255,0,0);rgb(0,0,255)"
+           dur="15s"
+           repeatCount="10"
+/>
+<animate 
+           xlink:href="#c2"
+           attributeName="fill"
+           from="rgb(0,0,255)"
+           to="rgb(0,255,0)"
+           dur="2s"
+           repeatCount="2"
+/>
+
+
+</svg> 
+ 
+</body>
+</html>
