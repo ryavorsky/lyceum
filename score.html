@@ -1,0 +1,40 @@
+<html>
+<body>
+<script>
+
+var i = 0;
+
+function score(){
+  i = i + 1;
+  resEl = document.getElementById('res');
+  resEl.innerHTML = String(i);
+}
+</script>
+
+<svg width="800" height="400" style="border: 1px solid black; background: #E0FFFF;">
+
+  <circle id="c1" onclick="score()" cx="150" cy="150" r="40" stroke="cyan" stroke-width="5" fill="rgb(170,170,255)" />
+
+  <animate 
+           xlink:href="#c1"
+           attributeName="cx"
+           values="150;650;150"
+           dur="12s"
+           repeatCount="4"
+  />
+
+  <animate 
+           xlink:href="#c1"
+           attributeName="fill"
+           values="red;yellow;rgb(170,170,255)"
+           begin="click"
+           dur="0.5s"
+           repeatCount="1"
+  />
+
+</svg>
+
+<br />
+<h1>Score: <span id="res"></span></h1> 
+</body>
+</html>
