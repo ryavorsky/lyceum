@@ -1,0 +1,79 @@
+body 
+{
+    background-color:Black;
+    margin: 0; 
+    padding: 0;
+    text-align: center;
+
+}
+
+#header{
+    width: 100%;
+}
+#vk_auth{
+margin: 0 auto; 
+}
+
+table.layout
+{
+    border-collapse: collapse;
+    border: 0px solid #777;
+    background-color: #222;
+}
+
+table.layout td 
+{
+    border: 1px dashed #444;
+    width: 20%;
+    text-align:center;
+    background-color: #222;
+    padding: 10px 0px 10px 0px;
+    vertical-align: bottom;
+    
+}
+table.layout td:hover{
+    background-color: #000;
+    border: 1px solid #333;
+}
+
+img
+{
+     width:75%;
+     //border: 0.5px solid #777;
+     opacity: 0.62;
+}
+img:hover{
+    opacity: 1.0;
+}
+div.page
+{
+    width:80%; 
+    margin-right: auto; 
+    margin-left: auto;
+}
+span.score
+{
+    font-size: 100%;
+    font-family: Arial Black;
+    color: #555; 
+}
+span.author
+{
+    font-size: 80%;
+    font-family: Arial;
+    font-weight: bold;
+    color: #555; 
+}
+span.vote select
+{
+    font-family: Arial;
+    font-size: 120%;
+    font-weight: bold;
+    background-color: #334;
+    color: #ffa;
+    border-radius: 5px;
+    text-align: center;
+}
+span.vote select:hover{
+    //color: Red;
+}
